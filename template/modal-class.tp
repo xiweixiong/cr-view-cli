@@ -1,0 +1,38 @@
+import React from 'react'
+import { Modal } from 'antd'
+import { Wrapper } from './style'
+import { $upMobxName$ } from '../mobx'
+
+interface $viewName$Props {
+  visible: boolean
+  /** 关闭回调 */
+  onCancel?: () => void
+  $pkgMobxName$?: $upMobxName$
+}
+
+/** $viewName$ 视图 */
+class $viewName$ extends React.Component<$viewName$Props> {
+  state = {
+
+  }
+
+  /** 关闭 */
+  handleClose = () => {
+    const { onCancel } = this.props
+    if (onCancel) onCancel()
+  }
+
+  render() {
+    const { visible } = this.props
+
+    return (
+      <Modal visible={visible} onCancel={this.handleClose}  width="600px" maskClosable={false} centered>
+        <Wrapper>
+
+        </Wrapper>
+      </Modal>
+    )
+  }
+}
+
+export default $viewName$

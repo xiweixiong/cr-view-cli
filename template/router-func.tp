@@ -1,0 +1,20 @@
+import React from 'react'
+import { observer } from 'mobx-react'
+import { useStore } from '@/store'
+import { useHistory } from 'react-router-dom'
+import { Wrapper } from './style'
+
+
+/** $viewName$ 视图 */
+const $viewName$: React.FC = observer(() => {
+  const history = useHistory()
+  const { $pkgMobxName$ } = useStore()
+
+  return (
+    <Wrapper className="page-container">
+      
+    </Wrapper>
+  )
+})
+
+export default $viewName$

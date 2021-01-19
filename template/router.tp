@@ -1,0 +1,19 @@
+import React from 'react'
+import { Switch, Route, useRouteMatch } from 'react-router-dom'
+import loadable from '@loadable/component'
+import KeepAlive from 'react-activation'
+
+// 页面路由
+/**constviews*/
+
+const $moduleName$Router: React.FC = () => {
+  const { path } = useRouteMatch()
+
+  return (
+    <Switch>
+      {/**views*/}
+    </Switch>
+  )
+}
+
+export default $moduleName$Router

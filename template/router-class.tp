@@ -1,0 +1,32 @@
+import React from 'react'
+import { RouteComponentProps, withRouter } from 'react-router-dom'
+import { inject, observer } from 'mobx-react'
+import { Common } from '@/store/common'
+import { $upMobxName$ } from '../mobx'
+import { Wrapper } from './style'
+
+
+interface $viewName$Props extends RouteComponentProps {
+  common?: Common
+  $pkgMobxName$?: $upMobxName$
+}
+
+/** $viewName$ 视图 */
+@inject('common', '$pkgMobxName$')
+@observer
+class $viewName$ extends React.Component<$viewName$Props> {
+
+  state = {
+
+  }
+
+  render() {
+    return (
+      <Wrapper className="page-container">
+        
+      </Wrapper>
+    )
+  }
+}
+
+export default withRouter($viewName$)

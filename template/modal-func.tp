@@ -1,0 +1,31 @@
+import React from 'react'
+import { observer } from 'mobx-react'
+import { useStore } from '@/store'
+import { Modal } from 'antd'
+import { Wrapper } from './style'
+
+interface $viewName$Props {
+  visible: boolean
+  /** 关闭回调 */
+  onCancel?: () => void
+}
+
+/** $viewName$ 视图 */
+const $viewName$: React.FC<$viewName$Props> = observer(({ visible, onCancel }) => {
+  const { $pkgMobxName$ } = useStore()
+
+  /** 关闭 */
+  const handleClose = () => {
+    if (onCancel) onCancel()
+  }
+
+  return (
+    <Modal visible={visible} onCancel={handleClose} width="600px" maskClosable={false} centered>
+      <Wrapper>
+        
+      </Wrapper>
+    </Modal>
+  )
+})
+
+export default $viewName$
