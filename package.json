@@ -37,5 +37,16 @@
   "license": "MIT",
   "directories": {
     "lib": "lib"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xiweixiong/cr-view-cli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/xiweixiong/cr-view-cli/issues"
+  },
+  "homepage": "https://github.com/xiweixiong/cr-view-cli#readme",
+  "keywords": [
+    "cr-view-cli"
+  ]
 }
