@@ -1,6 +1,6 @@
 {
   "name": "cr-view-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "自用create-react-app文件生成脚手架",
   "main": "lib/cmd.js",
   "bin": {

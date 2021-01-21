@@ -114,37 +114,35 @@ program.version(currentVersion).usage('[命令] [配置项]')
             console.log(chalk.green(`生成style：${chalk.yellow(stylePath)}`))
 
             if (viewType === 'router') {
-              if (!fs.existsSync(viewDir)) {
-                // 是否存在模块路由
-                const routerPath = `./src/router/${newModuleName}.tsx`
-                if (!fs.existsSync(routerPath)) {
-                  const moduleRouterPath = path.join(__dirname, '../template/router.tp')
-                  let routerTemp = fs.readFileSync(moduleRouterPath).toString()
-                  fs.writeFileSync(routerPath, routerTemp.replace(/\$moduleName\$/g, upperCase(moduleName)))
+              // 是否存在模块路由
+              const routerPath = `./src/router/${newModuleName}.tsx`
+              if (!fs.existsSync(routerPath)) {
+                const moduleRouterPath = path.join(__dirname, '../template/router.tp')
+                let routerTemp = fs.readFileSync(moduleRouterPath).toString()
+                fs.writeFileSync(routerPath, routerTemp.replace(/\$moduleName\$/g, upperCase(moduleName)))
 
-                  const mainRouterPath = './src/router/index.tsx'
-                  let mainRouterStr = fs.readFileSync(mainRouterPath).toString()
-                  const constStr = `const ${upperCase(moduleName)}Router = loadable(() => import('./${newModuleName}'))`
-                  const constReplaceStr = `${constStr}\n/**constviews*/`
-                  const routerNodeStr = `<Route path="/${moduleName}" component={${upperCase(moduleName)}Router} />`
-                  const routerNodeReplaceStr = `${routerNodeStr}\n          {/**views*/}`
-                  mainRouterStr = mainRouterStr.replace(/\/\*\*constviews\*\//g, constReplaceStr)
-                  mainRouterStr = mainRouterStr.replace(/\{\/\*\*views\*\/\}/g, routerNodeReplaceStr)
-                  fs.writeFileSync(mainRouterPath, mainRouterStr)
-                  console.log(chalk.green(`生成模块路由并注入主路由`))
-                }
-
-                // 注入模块路由
-                let routerStr = fs.readFileSync(routerPath).toString()
-                const constStr = `const ${pkgViewName}View = loadable(() => import('@/views/${newModuleName}/${packageName}/${viewName}'))`
+                const mainRouterPath = './src/router/index.tsx'
+                let mainRouterStr = fs.readFileSync(mainRouterPath).toString()
+                const constStr = `const ${upperCase(moduleName)}Router = loadable(() => import('./${newModuleName}'))`
                 const constReplaceStr = `${constStr}\n/**constviews*/`
-                const viewRouterPath = '`${path}/' + packageName + '/' + viewName + '`'
-                const viewNodeStr = `<Route path={${viewRouterPath}}><KeepAlive name={${viewRouterPath}}><${pkgViewName}View /></KeepAlive></Route>`
-                const viewNodeReplaceStr = `${viewNodeStr}\n      {/**views*/}`
-                routerStr = routerStr.replace(/\/\*\*constviews\*\//g, constReplaceStr)
-                routerStr = routerStr.replace(/\{\/\*\*views\*\/\}/g, viewNodeReplaceStr)
-                fs.writeFileSync(routerPath, routerStr)
+                const routerNodeStr = `<Route path="/${moduleName}" component={${upperCase(moduleName)}Router} />`
+                const routerNodeReplaceStr = `${routerNodeStr}\n          {/**views*/}`
+                mainRouterStr = mainRouterStr.replace(/\/\*\*constviews\*\//g, constReplaceStr)
+                mainRouterStr = mainRouterStr.replace(/\{\/\*\*views\*\/\}/g, routerNodeReplaceStr)
+                fs.writeFileSync(mainRouterPath, mainRouterStr)
+                console.log(chalk.green(`生成模块路由并注入主路由`))
               }
+
+              // 注入模块路由
+              let routerStr = fs.readFileSync(routerPath).toString()
+              const constStr = `const ${pkgViewName}View = loadable(() => import('@/views/${newModuleName}/${packageName}/${viewName}'))`
+              const constReplaceStr = `${constStr}\n/**constviews*/`
+              const viewRouterPath = '`${path}/' + packageName + '/' + viewName + '`'
+              const viewNodeStr = `<Route path={${viewRouterPath}}><KeepAlive name={${viewRouterPath}}><${pkgViewName}View /></KeepAlive></Route>`
+              const viewNodeReplaceStr = `${viewNodeStr}\n      {/**views*/}`
+              routerStr = routerStr.replace(/\/\*\*constviews\*\//g, constReplaceStr)
+              routerStr = routerStr.replace(/\{\/\*\*views\*\/\}/g, viewNodeReplaceStr)
+              fs.writeFileSync(routerPath, routerStr)
             }
           })
       })
