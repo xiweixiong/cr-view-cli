@@ -143,6 +143,7 @@ program.version(currentVersion).usage('[命令] [配置项]')
               routerStr = routerStr.replace(/\/\*\*constviews\*\//g, constReplaceStr)
               routerStr = routerStr.replace(/\{\/\*\*views\*\/\}/g, viewNodeReplaceStr)
               fs.writeFileSync(routerPath, routerStr)
+              console.log(chalk.green(`注入模块路由`))
             }
           })
       })
