@@ -1,7 +1,7 @@
 
 /** $moduleName$ 模块 store */
 const $moduleName$Store = {
-  /**mobxs*/
+  
 }
 
 export default $moduleName$Store
